@@ -4,4 +4,6 @@
     <string name="app_name">Bookie</string>
 
     <string name="search_hint">Enter keyword to search</string>
+
+    <string name="lonely">It\'s pretty lonely in here! Search for something.</string>
 </resources>
