@@ -12,13 +12,15 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/search_edit_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/search_hint"
             android:layout_margin="16dp"
+            android:hint="@string/search_hint"
             android:inputType="text" />
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/search_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -29,7 +31,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lonely"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:text="@string/lonely" />
 
 </RelativeLayout>
