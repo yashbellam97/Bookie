@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,9 +31,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(new Book("Book of Android", "AuthorA"));
+        books.add(new Book("Googling", "AuthorB"));
+        books.add(new Book("Art of Code", "AuthorC"));
+        books.add(new Book("Linux Essentials", "AuthorD"));
+        books.add(new Book("Android Cookbook", "AuthorE"));
+        books.add(new Book("Git and GitHub", "AuthorF"));
+        books.add(new Book("Zen of Code", "AuthorG"));
+        books.add(new Book("Android Studio", "AuthorH"));
+        books.add(new Book("The IntelliJ IDEA", "AuthorI"));
+        books.add(new Book("Google is the best", "AuthorJ"));
+        books.add(new Book("Let's make that app", "AuthorK"));
+
+        BookAdapter bookAdapter = new BookAdapter(this, books);
+
         ListView booksList = (ListView) findViewById(R.id.books_list);
-        String[] bookNames = {"Book of Android", "Android Book", "Objective C", "Swift", "Head First Java", "Programming Python", "Book of Android", "Android Book", "Objective C", "Swift"};
-        ArrayAdapter<String> booksArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, bookNames);
-        booksList.setAdapter(booksArrayAdapter);
+
+        booksList.setAdapter(bookAdapter);
     }
 }
