@@ -1,6 +1,7 @@
 package com.yaswanth.bookie;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String queryUrlString = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Book> books = new ArrayList<>();
+        /*ArrayList<Book> books = new ArrayList<>();
+
         books.add(new Book("Book of Android", "AuthorA"));
         books.add(new Book("Googling", "AuthorB"));
         books.add(new Book("Art of Code", "AuthorC"));
@@ -44,10 +48,21 @@ public class MainActivity extends AppCompatActivity {
         books.add(new Book("Google is the best", "AuthorJ"));
         books.add(new Book("Let's make that app", "AuthorK"));
 
+
+*/
+        enableStrictMode();
+        ArrayList<Book> books = QueryUtils.fetchBooks(queryUrlString);
+
         BookAdapter bookAdapter = new BookAdapter(this, books);
 
         ListView booksList = (ListView) findViewById(R.id.books_list);
 
         booksList.setAdapter(bookAdapter);
+    }
+
+    public void enableStrictMode() {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
     }
 }
