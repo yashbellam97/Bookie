@@ -1,7 +1,7 @@
 package com.yaswanth.bookie;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -50,19 +50,26 @@ public class MainActivity extends AppCompatActivity {
 
 
 */
-        enableStrictMode();
-        ArrayList<Book> books = QueryUtils.fetchBooks(queryUrlString);
+        BookFetchAsyncTask task = new BookFetchAsyncTask();
+        task.execute(queryUrlString);
 
-        BookAdapter bookAdapter = new BookAdapter(this, books);
-
-        ListView booksList = (ListView) findViewById(R.id.books_list);
-
-        booksList.setAdapter(bookAdapter);
     }
 
-    public void enableStrictMode() {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+    private class BookFetchAsyncTask extends AsyncTask<String, Void, ArrayList<Book>> {
 
-        StrictMode.setThreadPolicy(policy);
+        @Override
+        protected ArrayList<Book> doInBackground(String... urls) {
+            ArrayList<Book> books = QueryUtils.fetchBooks(urls[0]);
+            return books;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Book> books) {
+            BookAdapter bookAdapter = new BookAdapter(MainActivity.this, books);
+
+            ListView booksList = (ListView) findViewById(R.id.books_list);
+
+            booksList.setAdapter(bookAdapter);
+        }
     }
 }
