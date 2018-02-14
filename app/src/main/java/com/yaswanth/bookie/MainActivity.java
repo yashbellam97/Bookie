@@ -48,22 +48,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*ArrayList<Book> books = new ArrayList<>();
-
-        books.add(new Book("Book of Android", "AuthorA"));
-        books.add(new Book("Googling", "AuthorB"));
-        books.add(new Book("Art of Code", "AuthorC"));
-        books.add(new Book("Linux Essentials", "AuthorD"));
-        books.add(new Book("Android Cookbook", "AuthorE"));
-        books.add(new Book("Git and GitHub", "AuthorF"));
-        books.add(new Book("Zen of Code", "AuthorG"));
-        books.add(new Book("Android Studio", "AuthorH"));
-        books.add(new Book("The IntelliJ IDEA", "AuthorI"));
-        books.add(new Book("Google is the best", "AuthorJ"));
-        books.add(new Book("Let's make that app", "AuthorK"));
-
-
-*/
         loadingIndicator.setVisibility(View.GONE);
 
         mainMessage.setVisibility(View.VISIBLE);
