@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public final class QueryUtils {
 
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
-    private String queryUrlString = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
 
     private QueryUtils() {
     }

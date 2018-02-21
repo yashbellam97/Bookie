@@ -6,4 +6,6 @@
     <string name="search_hint">Enter keyword to search</string>
 
     <string name="lonely">It\'s pretty lonely in here! Search for something.</string>
+
+    <string name="no_books">Sorry, no books were found.</string>
 </resources>
