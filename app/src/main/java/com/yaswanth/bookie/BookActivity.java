@@ -1,7 +1,10 @@
 package com.yaswanth.bookie;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +25,6 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
     private String queryUrlStringStart = "https://www.googleapis.com/books/v1/volumes?q=";
     private String queryUrlString = "";
     private String queryUrlStringEnd = "&maxResults=10";
-    private int count = 1;
     private BookAdapter mAdapter;
 
     @Override
@@ -46,23 +48,25 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onClick(View v) {
                 mainMessage.setVisibility(View.GONE);
                 loadingIndicator.setVisibility(View.VISIBLE);
+                mAdapter.clear();
                 String inputText = searchEditText.getText().toString();
                 if (!inputText.isEmpty()) {
                     queryUrlString = queryUrlStringStart + inputText + queryUrlStringEnd;
-                    reload();
+                    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                    final NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        reload();
+                    } else {
+                        loadingIndicator.setVisibility(View.GONE);
+                        mainMessage.setText(R.string.no_internet);
+                        mainMessage.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
 
-        if (count == 1) {
-            loadingIndicator.setVisibility(View.GONE);
-            mainMessage.setText(R.string.lonely);
-            count++;
-        } else {
-            loadingIndicator.setVisibility(View.VISIBLE);
-            LoaderManager loaderManager = getLoaderManager();
-            loaderManager.initLoader(BOOK_LOADER_ID, null, this);
-        }
+        loadingIndicator.setVisibility(View.GONE);
+        mainMessage.setText(R.string.lonely);
     }
 
     public void reload() {

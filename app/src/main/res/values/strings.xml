@@ -8,4 +8,6 @@
     <string name="lonely">It\'s pretty lonely in here! Search for something.</string>
 
     <string name="no_books">Sorry, no books were found.</string>
+
+    <string name="no_internet">NO INTERNET! Where are you, the stone age?</string>
 </resources>
