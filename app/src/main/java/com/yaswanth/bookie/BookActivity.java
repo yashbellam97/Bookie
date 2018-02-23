@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -52,6 +53,11 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onClick(View v) {
                 String inputText = searchEditText.getText().toString();
                 if (!inputText.isEmpty()) {
+                    View view = getCurrentFocus();
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
                     mainMessage.setVisibility(View.GONE);
                     loadingIndicator.setVisibility(View.VISIBLE);
                     mAdapter.clear();
