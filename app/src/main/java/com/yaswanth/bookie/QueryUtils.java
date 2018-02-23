@@ -122,8 +122,9 @@ public final class QueryUtils {
                 String bookName = details.getString("title");
                 JSONArray authors = details.getJSONArray("authors");
                 String authorName = authors.getString(0);
+                String link = details.getString("infoLink");
 
-                books.add(new Book(bookName, authorName));
+                books.add(new Book(bookName, authorName, link));
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Problem retrieving results from JSON", e);

@@ -2,17 +2,21 @@ package com.yaswanth.bookie;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -62,6 +66,19 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                         mainMessage.setVisibility(View.VISIBLE);
                     }
                 }
+            }
+        });
+
+        booksList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book book = mAdapter.getItem(position);
+                String bookUrl = book.getBookUrl();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bookUrl));
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                } else
+                    Toast.makeText(getApplicationContext(), "Unable to open browser", Toast.LENGTH_LONG).show();
             }
         });
 
