@@ -10,13 +10,14 @@
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="16dp">
 
         <EditText
             android:id="@+id/search_edit_text"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_margin="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:hint="@string/search_hint"
             android:inputType="text" />
 
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_search_white_36dp"
-            app:fabSize="normal"
+            app:fabSize="mini"
             app:rippleColor="@android:color/white" />
 
     </LinearLayout>
