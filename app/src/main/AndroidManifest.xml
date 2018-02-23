@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".BookActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan|stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
