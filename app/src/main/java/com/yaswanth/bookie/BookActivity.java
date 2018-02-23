@@ -50,11 +50,11 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         searchFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainMessage.setVisibility(View.GONE);
-                loadingIndicator.setVisibility(View.VISIBLE);
-                mAdapter.clear();
                 String inputText = searchEditText.getText().toString();
                 if (!inputText.isEmpty()) {
+                    mainMessage.setVisibility(View.GONE);
+                    loadingIndicator.setVisibility(View.VISIBLE);
+                    mAdapter.clear();
                     queryUrlString = queryUrlStringStart + inputText + queryUrlStringEnd;
                     ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                     final NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -65,6 +65,8 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                         mainMessage.setText(R.string.no_internet);
                         mainMessage.setVisibility(View.VISIBLE);
                     }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Enter something!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
